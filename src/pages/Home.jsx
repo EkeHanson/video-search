@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { demoAPI } from '../services/api';
 
@@ -13,6 +13,7 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [recentDemos, setRecentDemos] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(true);
+  const queryRef = useRef(null);
 
   useEffect(() => {
     const fetchRecentDemos = async () => {
@@ -63,16 +64,27 @@ export default function Home() {
     }
   };
 
+  // called by sidebar button to start fresh
+  const handleNewDemo = () => {
+    setQuery('');
+    setQuality('hd');
+    setVoice('default');
+    setError('');
+    setSidebarOpen(false);
+    navigate('/');
+    // focus textarea after reset
+    setTimeout(() => {
+      queryRef.current?.focus();
+    }, 10);
+  };
+
   return (
     <div className="min-h-[calc(100vh-64px)] flex bg-gray-50 lg:bg-white">
       {/* Sidebar */}
       <div className={`fixed lg:static inset-y-16 left-0 w-64 bg-gray-900 text-white transform transition-transform duration-300 z-40 lg:z-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} overflow-y-auto`}>
         <div className="p-4 border-b border-gray-700">
           <button
-            onClick={() => {
-              setQuery('');
-              setSidebarOpen(false);
-            }}
+            onClick={handleNewDemo}
             className="w-full px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-white text-sm font-medium transition-colors"
           >
             + New Demo
@@ -153,6 +165,7 @@ export default function Home() {
                 What would you like to learn?
               </label>
               <textarea
+                ref={queryRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="e.g., 'Teach me how to cook Egusi soup with ₦5000 in Lagos'"
