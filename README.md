@@ -73,8 +73,7 @@ Dev dependencies include Tailwind, PostCSS, ESLint plugins, and types for React.
 
 1. **Clone the repository** and navigate to the frontend directory:
    ```bash
-   git clone <repo-url>
-   cd "C:\Users\Ekene-onwon\Desktop\Codes\Video Search Engine\frontend"
+   git clone https://github.com/EkeHanson/video-search.git
    ```
 
 2. **Install dependencies**:
