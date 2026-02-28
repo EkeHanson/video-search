@@ -33,9 +33,12 @@ export default function Navbar() {
             >
               History
             </Link>
-            <button className="bg-primary text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium text-xs sm:text-sm">
+            <Link 
+              to="/signin"
+              className="bg-primary text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors font-medium text-xs sm:text-sm"
+            >
               Sign In
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -66,9 +69,13 @@ export default function Navbar() {
             >
               History
             </Link>
-            <button className="w-full bg-primary text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-xs sm:text-sm font-medium">
+            <Link 
+              to="/signin"
+              className="block w-full bg-primary text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-xs sm:text-sm font-medium text-center"
+              onClick={() => setIsOpen(false)}
+            >
               Sign In
-            </button>
+            </Link>
           </div>
         )}
       </div>

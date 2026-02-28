@@ -5,6 +5,10 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 import DemoPlayer from './pages/DemoPlayer';
 import History from './pages/History';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
 function App() {
@@ -18,6 +22,10 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/demo/:demoId" element={<DemoPlayer />} />
               <Route path="/history" element={<History />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
           </main>
           <Footer />

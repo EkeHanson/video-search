@@ -57,23 +57,38 @@ export const demoAPI = {
   // Get user credits
   getCredits: () =>
     api.get('/user/credits'),
-};
 
-// Auth API endpoints
-export const authAPI = {
-  register: (email, password, name) =>
-    api.post('/auth/register', { email, password, name }),
+  // Authentication endpoints
+  register: (firstName, lastName, email, password) =>
+    api.post('/auth/register', { first_name: firstName, last_name: lastName, email, password }),
 
   login: (email, password) =>
     api.post('/auth/login', { email, password }),
 
   logout: () => {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('authToken');
     return Promise.resolve();
   },
 
   getCurrentUser: () =>
     api.get('/auth/me'),
+
+  // Password reset endpoints
+  requestPasswordReset: (email) =>
+    api.post('/auth/request-password-reset', { email }),
+
+  validateResetToken: (token) =>
+    api.post('/auth/validate-reset-token', { token }),
+
+  resetPassword: (token, password) =>
+    api.post('/auth/reset-password', { token, password }),
+
+  // Google OAuth
+  googleSignIn: (code) =>
+    api.post('/auth/google', { code }),
+
+  googleCallback: () =>
+    api.get('/auth/google/callback'),
 };
 
 export default api;
